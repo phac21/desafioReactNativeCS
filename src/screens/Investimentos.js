@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-
-import { View, Text, StyleSheet, FlatList} from "react-native";
 import { useNavigation } from '@react-navigation/native'
+import { View, Text, StyleSheet, FlatList} from "react-native";
 
-
-import { ListaDeInvestimentos } from "../components/ListaInvestimentos";
+import { Header } from "../components/Header";
 import { Load } from "../components/Load";
+import { ListaDeInvestimentos } from "../components/ListaInvestimentos";
 
 import {api} from "../services/Api";
-import { Header } from "../components/Header";
 
 export default function Investimentos(){
     const navegacao = useNavigation();
@@ -18,7 +16,6 @@ export default function Investimentos(){
     
     function lidarSelecaoInvestimento(investimento){
         navegacao.navigate('ResgateInvestimentos', {investimento})
-        console.log('você clicou no investimento')
     }
     useEffect(() => {
         async function buscarInvestimentos() {
@@ -42,10 +39,10 @@ export default function Investimentos(){
     return(
         <View>
             <Header/>
-            <Text style={styles.screenDescription}>
+            <View style={styles.screenDescription}>
                 <Text>INVESTIMENTOS</Text>
-                <Text>R$</Text>
-            </Text>
+                <Text style={{alignSelf: 'flex-end',}}>R$</Text>
+            </View>
 
 
             {
@@ -76,7 +73,6 @@ const styles = StyleSheet.create({
     screenDescription: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 10,
-        fontSize: 16,
+        padding: 15,
     }
 })

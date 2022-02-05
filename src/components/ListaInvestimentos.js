@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { 
     View, 
@@ -11,15 +11,21 @@ export function ListaDeInvestimentos({ investimento, onPress }){
     // let saldoTotalBRL = investimento.saldoTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") ;
     // let saldoTotalBRL = investimento.saldoTotal.toFixed(2).replace('.', ','); 
     // let saldoTotalBRL = investimento.saldoTotal.toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL'});
-    let carencia = investimento.indicadorCarencia
-    // carencia === S 
+
+    const [carencia, setCarencia] = useState(false);
+
+    useEffect(() => {
+        if (investimento.indicadorCarencia === 'S'){
+            setCarencia(true);
+        }
+    }, [])
 
     return(
         <TouchableOpacity
             style={styles.investimentoButton}
             activeOpacity={0.6}
             onPress={onPress}
-            // disabled={}
+            disabled={carencia}
         >   
             <View style={styles.investimentoInfo}>
                 <Text style={styles.investimentoTitle}>

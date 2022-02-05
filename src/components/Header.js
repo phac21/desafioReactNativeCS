@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 22,
         fontWeight: 'bold',
-        padding: 20,
+        padding: 10,
         textAlign: 'center',
         borderBottomWidth: 5,
         borderBottomColor: '#FAE128',
