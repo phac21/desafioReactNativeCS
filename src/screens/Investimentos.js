@@ -52,17 +52,12 @@ export default function Investimentos(){
                     keyExtractor={item => item.nome}
                     renderItem={({ item }) => (
                         <ListaDeInvestimentos
-                        // key={item.nome}
                         investimento={item}
                         onPress={() => lidarSelecaoInvestimento(item)}
                     />
                     )}
                 />
             }
-            
-
-            {/* { carregando ? <Load/> : <Text></Text>} */}
-
         </View>
     )
 }

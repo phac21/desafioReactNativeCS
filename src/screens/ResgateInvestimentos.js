@@ -28,12 +28,9 @@ export default function Investimentos(){
     const [modalOpen, setModalOpen] = useState(false);
 
     function lidarInputChange( id, valor, valorMaximo){
-        var valorMaximoTratado =  valorMaximo.toFixed(2);
         var acao = acoes.filter(acao => acao.id === id)[0];
         acao.temErro = valor > valorMaximo;
-        acao.valorMaximo = valorMaximoTratado;
         acao.resgateInformado = parseFloat(valor);
-        console.log("O valor informado foi:" + acao.resgateInformado);
         var acoesTemp = acoes.filter(acao => acao.id != id);
         acoesTemp.push(acao);
         setAcoes(acoesTemp);
@@ -50,29 +47,13 @@ export default function Investimentos(){
         }
     }
 
-    // function formatarValor(valor){
-    //     return new Intl.NumberFormat('pt-BR', {
-    //         style: 'currency',
-    //         currency: 'BRL',
-    //         }).format(valor);
-    // }
-
     function calcularValorMaximo(percentual, saldoTotal ){
-
         return(percentual / 100 * saldoTotal);
     }
    
     useEffect(() => {
         const data = investimento.acoes;
         setAcoes(data);
-
-        var number = 35000.10;
-
-        console.log(new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-            }).format(number));
-            // → '₹ 35,000' if in IN English locale
     }, []);
 
     useEffect(() => {
@@ -87,7 +68,7 @@ export default function Investimentos(){
     return(
         <View style={[{flex: 1},{justifyContent: 'space-between'}]}>
                 <Header/>
-                {/* <View style={styles.viewStyle}> */}
+                
                     <Text style={styles.subtitulo}>DADOS DO INVESTIMENTO</Text>
                     <View style={styles.investimentoDetalhe}>
                         <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Nome</Text>
@@ -138,7 +119,6 @@ export default function Investimentos(){
                     >
                         <Text style={styles.buttonText}>CONFIRMAR RESGATE</Text> 
                     </TouchableOpacity>
-                {/* </View> */}
                 <Modal 
                     visible={modalOpen}
                     transparent={true}
@@ -156,7 +136,7 @@ export default function Investimentos(){
                                     renderItem={({ item }) => (
                                         <>
                                             <Text style={styles.modalDescricao}>{item.nome}:</Text>
-                                            <Text style={styles.modalDescricao}>Valor máximo de {formatarValor(item.valorMaximo)}</Text>
+                                            <Text style={styles.modalDescricao}>Valor máximo de {formatarValor(calcularValorMaximo(item.percentual, investimento.saldoTotal))}</Text>
                                         </>
                                     )}
                                 />
@@ -177,7 +157,6 @@ export default function Investimentos(){
                                     onPress={lidarBotaoModal}
                                     style={styles.button}
                                 >
-                                        
                                     <Text style ={styles.buttonText}>NOVO RESGATE</Text>
                                 </TouchableOpacity>
                             </View>
@@ -215,8 +194,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderBottomWidth: 2,
         borderBottomColor: '#F4F4F4',
-        // flexDirection: 'row',
-        // justifyContent: 'space-between',
     },
     input: {
         backgroundColor: '#FFF',

@@ -10,10 +10,6 @@ import {
 } from "react-native";
 
 export function ListaDeInvestimentos({ investimento, onPress }){
-    // let saldoTotalBRL = investimento.saldoTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") ;
-    // let saldoTotalBRL = investimento.saldoTotal.toFixed(2).replace('.', ','); 
-    // let saldoTotalBRL = investimento.saldoTotal.toLocaleString('pt-BR',{ style: 'currency', currency: 'BRL'});
-
     const [carencia, setCarencia] = useState(false);
 
     useEffect(() => {
