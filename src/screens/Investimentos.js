@@ -15,7 +15,7 @@ export default function Investimentos(){
     const [carregando, setCarregando] = useState(true);
     
     function lidarSelecaoInvestimento(investimento){
-        navegacao.navigate('ResgateInvestimentos', {investimento})
+        navegacao.navigate('ResgateInvestimentos', {investimento});
     }
     useEffect(() => {
         async function buscarInvestimentos() {

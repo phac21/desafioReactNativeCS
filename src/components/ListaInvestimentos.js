@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { formatarValor } from "../utils/mascaraValor.js";
+
 import { 
     View, 
     Text, 
@@ -33,7 +35,7 @@ export function ListaDeInvestimentos({ investimento, onPress }){
                 </Text>
                 <Text style={styles.investimentoTitle}>
                     {/* {investimento.saldoTotal} */}
-                    {investimento.saldoTotal}
+                    {formatarValor(investimento.saldoTotal)}
                 </Text>
             </View>
             <Text style={styles.investimentoDescription}>
@@ -56,11 +58,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     investimentoTitle:{
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#2F2F2F',
     },
     investimentoDescription:{
-        fontSize: 18,
+        fontSize: 16,
     }
 })
